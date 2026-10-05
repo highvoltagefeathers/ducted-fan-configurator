@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ducted Fan Configurator</title>
+<link rel="stylesheet" href="style.css?v=3">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="11" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="13" cy="13" r="3" fill="currentColor"/><path d="M13 4 Q17 9 13 13 Q9 17 13 22" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 13 Q9 9 13 13 Q17 17 22 13" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+    <div>
+      <div class="brand-title">Ducted Fan Configurator</div>
+      <div class="brand-sub">DFDC 0.70 solver &middot; Drela &amp; Youngren</div>
+    </div>
+  </div>
+  <div class="mode" role="tablist" aria-label="Mode">
+    <button class="mode-btn active" data-mode="design" role="tab">Design blades</button>
+    <button class="mode-btn" data-mode="analyze" role="tab" id="analyze-tab" disabled title="Run a design first">Analyze design</button>
+  </div>
+  <div class="topbar-right">
+    <input id="case-name" class="name-input" value="My fan" aria-label="Case name" spellcheck="false">
+    <label class="switch live" title="Re-run DFDC automatically whenever a setting changes"><input type="checkbox" id="live-chk" checked><span>Live solve</span></label>
+    <span id="solve-status" class="muted status"></span>
+    <button id="theme-btn" class="icon-btn" title="Toggle light/dark">&#9680;</button>
+    <button id="run-btn" class="run-btn">Run DFDC</button>
+  </div>
+</header>
+
+<main class="layout">
+  <aside class="controls" id="controls"></aside>
+
+  <section class="stage">
+    <div class="preview-card">
+      <div class="card-head">
+        <span class="card-title">Preview</span>
+        <span class="legend">
+          <span class="key"><i style="background:var(--s1)"></i>Duct</span>
+          <span class="key"><i style="background:var(--s2)"></i>Centerbody</span>
+          <span class="key"><i style="background:var(--s3)"></i>Rotor</span>
+          <span class="key" id="legend-stator"><i style="background:var(--s4)"></i>Stator</span>
+        </span>
+        <span class="muted" id="preview-dims"></span>
+        <span class="pill" id="blade-status" style="margin-left:auto"></span>
+      </div>
+      <div class="preview-grid">
+        <div class="p3d">
+          <div id="view3d" class="view3d"></div>
+          <div class="p3d-tools">
+            <label class="chk"><input type="checkbox" id="opt-duct" checked> duct</label>
+            <label class="chk"><input type="checkbox" id="opt-body" checked> body</label>
+            <label class="chk"><input type="checkbox" id="opt-outlines" checked> stations</label>
+            <label class="chk"><input type="checkbox" id="opt-spin" checked> spin</label>
+            <button class="small-btn" id="opt-reset" type="button">reset view</button>
+            <span class="sep"></span>
+            <span class="muted" style="font-size:11px" title="All three share one origin: centerbody nose tip on the axis, +X downstream, mm">STEP:</span>
+            <button class="small-btn primary step-btn" data-what="blade" type="button" title="One blade, smooth loft through every station. Origin: nose tip on the axis, +X downstream, mm">One blade</button>
+            <button class="small-btn primary step-btn" data-what="stator" type="button" title="One stator vane. Same origin as the blade and duct">One stator</button>
+            <button class="small-btn primary step-btn" data-what="duct" type="button" title="Duct ring, section revolved. Same origin as the blade and stator">Duct</button>
+          </div>
+          <div class="p3d-hint muted">drag to orbit · wheel to zoom · right-drag to pan</div>
+        </div>
+        <svg id="preview" class="preview" role="img" aria-label="Side view of duct, centerbody and rotor"></svg>
+      </div>
+      <div id="preview-warn" class="warn-strip" hidden></div>
+    </div>
+
+    <div class="results-card">
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-tab="summary">Summary</button>
+        <button class="tab" data-tab="blades">Blades</button>
+        <button class="tab" data-tab="pressure">Pressures</button>
+        <button class="tab" data-tab="section">Section</button>
+        <button class="tab" data-tab="log">DFDC log</button>
+      </div>
+      <div class="tab-body" id="tab-summary">
+        <div class="empty" id="summary-empty">
+          <p><strong>No run yet.</strong> Set the fan up on the left and press <em>Run DFDC</em>.</p>
+          <p class="muted">Design mode: DFDC drives the disk loading to your target thrust (<code>THRU</code>), designs blade chord and twist for the chosen section and CL (<code>DESI</code>), then re-converges the flow with the real blades (<code>EXEC</code>). Every number shown comes from the unmodified Fortran solver.</p>
+        </div>
+        <div id="summary" hidden></div>
+      </div>
+      <div class="tab-body" id="tab-blades" hidden></div>
+      <div class="tab-body" id="tab-pressure" hidden></div>
+      <div class="tab-body" id="tab-section" hidden></div>
+      <div class="tab-body" id="tab-log" hidden><pre id="log" class="log"></pre></div>
+    </div>
+  </section>
+</main>
+
+<div id="toast" class="toast" hidden></div>
+<div id="tooltip" class="tooltip" hidden></div>
+<script src="vendor/three.min.js"></script>
+<script src="vendor/OrbitControls.js"></script>
+<script src="viewer3d.js?v=3"></script>
+<script src="app.js?v=3"></script>
+</body>
+</html>

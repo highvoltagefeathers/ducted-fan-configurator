@@ -1,0 +1,24 @@
+# build output and the portable package (distribute via GitHub Releases, not the repo)
+dist/
+
+# solver scratch: one folder per DFDC run
+fan-configurator/runs/
+
+# python
+__pycache__/
+*.pyc
+
+# the original download; DFDC070/ holds the extracted, unmodified distribution
+DFDC_v0.70.zip
+
+# DFDC scratch files produced by probing the solver by hand
+DFDC070/runs/*.out
+DFDC070/runs/designed.case
+DFDC070/runs/s3_*.case
+plot.ps
+
+# editors / OS
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
