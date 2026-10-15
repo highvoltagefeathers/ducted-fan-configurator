@@ -1,0 +1,23 @@
+plop
+g
+
+oper
+thru 200.000
+2
+nbld 7
+cl 0.480
+desi
+1
+nbld 9
+cl 0.480 0.600
+desi
+exec
+bl
+bl
+
+forc
+cpwr cp.out
+
+save result.case
+quit
+

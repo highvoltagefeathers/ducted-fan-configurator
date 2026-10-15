@@ -554,6 +554,103 @@ async function run(quiet = false) {
 }
 
 // ---------------------------------------------------------------------------
+// saving and loading designs
+// ---------------------------------------------------------------------------
+function openSavePopover() {
+  if (!state.result) { toast("Nothing to save yet - run a design first.", true); return; }
+  if (state.stale) { toast("Settings changed since the last solve - wait for it to finish (or press Run DFDC) so the saved results match.", true, 6000); return; }
+  $("#save-name").value = state.config.name || "My fan";
+  $("#save-note").value = "";
+  $("#save-ok").textContent = "Save"; $("#save-ok").onclick = () => saveDesign(false);
+  const t = state.result.total || {};
+  $("#save-hint").textContent = `Saves the sliders, the designed blades and these results: ${fmt(t.thrust, 0)} N, ${fmt(t.power / 1000, 2)} kW. Kept in fan-configurator/designs/ until you delete it.`;
+  $("#save-pop").hidden = false; $("#save-name").focus(); $("#save-name").select();
+}
+async function saveDesign(overwrite) {
+  const name = $("#save-name").value.trim(); if (!name) { $("#save-name").focus(); return; }
+  const body = { name, note: $("#save-note").value, mode: state.mode, config: deepClone(state.config), rotors: state.rotors, result: state.result, overwrite };
+  try {
+    const r = await fetch("/api/designs", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+    const data = await r.json();
+    if (r.status === 409) {
+      $("#save-hint").textContent = `A design called "${name}" already exists. Press Replace to overwrite it, or change the name.`;
+      $("#save-ok").textContent = "Replace"; $("#save-ok").onclick = () => saveDesign(true); return;
+    }
+    if (!r.ok) throw new Error(data.error || r.statusText);
+    $("#save-pop").hidden = true;
+    state.config.name = name; $("#case-name").value = name; save("fan.config", state.config);
+    toast(`Saved "${name}"`);
+    if (!$("#designs-panel").hidden) openDesigns();
+  } catch (e) { toast("Save failed: " + e.message, true, 8000); }
+}
+async function openDesigns() {
+  $("#designs-panel").hidden = false;
+  const dl = $("#designs-list"), rl = $("#runs-list");
+  dl.innerHTML = rl.innerHTML = '<div class="empty-note">loading…</div>';
+  try {
+    const data = await (await fetch("/api/designs")).json();
+    $("#designs-count").textContent = data.designs.length ? `· ${data.designs.length}` : "";
+    dl.innerHTML = ""; rl.innerHTML = "";
+    if (!data.designs.length) dl.append(el("div", { class: "empty-note", text: "No saved designs yet. Run a design you like, then press Save design." }));
+    for (const d of data.designs) dl.append(designCard(d, true));
+    if (!data.runs.length) rl.append(el("div", { class: "empty-note", text: "No reloadable runs yet (runs made before this feature have no settings stored)." }));
+    for (const r of data.runs) rl.append(designCard(r, false));
+  } catch (e) { dl.innerHTML = ""; dl.append(el("div", { class: "empty-note", text: "Could not list designs: " + e.message })); }
+}
+function designCard(d, saved) {
+  const s = d.summary || {};
+  const when = d.saved ? d.saved.replace("T", " ") : "";
+  const meta = [s.fan_dia_mm ? `Ø ${fmt(s.fan_dia_mm, 0)} mm` : null, s.nblades ? `${s.nblades} blades` : null, s.stator ? "stator" : null,
+    s.rpm ? `${fmt(s.rpm, 0)} rpm` : null, s.vinf != null ? `${fmt(s.vinf, 0)} m/s` : null,
+    s.thrust != null ? `${fmt(s.thrust, 0)} N` : null, s.power != null ? `${fmt(s.power / 1000, 2)} kW` : null,
+    s.separated ? "⚠ separation" : null, d.mode === "analyze" ? "analyze" : null].filter(Boolean).join(" · ");
+  const card = el("div", { class: "design-card" }, [
+    el("div", { class: "dn", text: saved ? d.name : `${d.name} · ${when}` }),
+    el("div", { class: "da" }),
+    el("div", { class: "dm", text: (saved ? when + " · " : "") + meta }),
+    d.note ? el("div", { class: "dnote", text: d.note }) : null,
+  ]);
+  const actions = card.querySelector(".da");
+  actions.append(el("button", { class: "small-btn primary", text: "Load", onclick: () => loadBundle(d.kind, d.id) }));
+  if (saved) {
+    const del = el("button", { class: "small-btn danger", text: "Delete" });
+    del.onclick = async () => {
+      if (del.dataset.armed !== "1") { del.dataset.armed = "1"; del.textContent = "Confirm delete"; setTimeout(() => { del.dataset.armed = ""; del.textContent = "Delete"; }, 4000); return; }
+      try { await fetch("/api/designs/" + encodeURIComponent(d.id), { method: "DELETE" }); toast(`Deleted "${d.name}"`); openDesigns(); }
+      catch (e) { toast("Delete failed: " + e.message, true); }
+    };
+    actions.append(del);
+  } else {
+    actions.append(el("button", { class: "small-btn", text: "Save as design", onclick: async () => { await loadBundle(d.kind, d.id); $("#designs-panel").hidden = true; openSavePopover(); } }));
+  }
+  return card;
+}
+/** Put the UI back exactly as it was when the bundle was made - no re-solve. */
+async function loadBundle(kind, id) {
+  try {
+    const b = await (await fetch(`/api/${kind === "design" ? "designs" : "runs"}/${encodeURIComponent(id)}`)).json();
+    if (b.error) throw new Error(b.error);
+    state.config = b.config; state.mode = b.mode || "design";
+    state.result = b.result || null;
+    const res = state.result;
+    if (res && res.rotors && res.rotors.length && res.rotors[0].kind === "rotor") state.rotors = res.rotors;
+    else if (b.input_rotors && b.input_rotors.length) state.rotors = b.input_rotors;
+    if (res && res.geometry) { const g = res.geometry; state.rotorsGeom = { R_hub: g.R_hub, R_tip: g.R_tip, stator_hub: g.stator_hub, stator_tip: g.stator_tip }; state.geom = g; }
+    state.stale = false;
+    save("fan.config", state.config); save("fan.rotors", state.rotors); save("fan.rotorsGeom", state.rotorsGeom);
+    $("#case-name").value = state.config.name || "Fan";
+    $$(".mode-btn").forEach(x => x.classList.toggle("active", x.dataset.mode === state.mode));
+    buildControls();
+    if (state.geom) drawPreview(); else updatePreview();
+    if (res) { renderResults(); $("#summary-empty").hidden = true; showTab("summary"); }
+    renderSectionTab();
+    setStatus(kind === "design" ? "loaded design" : "loaded run");
+    $("#designs-panel").hidden = true;
+    toast(`Loaded "${b.name}"`);
+  } catch (e) { toast("Load failed: " + e.message, true, 8000); }
+}
+
+// ---------------------------------------------------------------------------
 // results
 // ---------------------------------------------------------------------------
 function showTab(id) {
@@ -885,6 +982,14 @@ async function boot() {
   }));
   $$(".tab").forEach(t => t.addEventListener("click", () => showTab(t.dataset.tab)));
   $("#run-btn").addEventListener("click", run);
+  $("#save-btn").addEventListener("click", openSavePopover);
+  $("#save-cancel").addEventListener("click", () => ($("#save-pop").hidden = true));
+  $("#save-ok").addEventListener("click", () => saveDesign(false));
+  $("#save-name").addEventListener("keydown", e => { if (e.key === "Enter") saveDesign(false); if (e.key === "Escape") $("#save-pop").hidden = true; });
+  $("#designs-btn").addEventListener("click", openDesigns);
+  $("#designs-close").addEventListener("click", () => ($("#designs-panel").hidden = true));
+  $("#designs-panel").addEventListener("click", e => { if (e.target === $("#designs-panel")) $("#designs-panel").hidden = true; });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") { $("#designs-panel").hidden = true; $("#save-pop").hidden = true; } });
   document.addEventListener("keydown", e => { if ((e.ctrlKey || e.metaKey) && e.key === "Enter") run(); });
   window.addEventListener("resize", debounce(() => { drawPreview(); renderResults(state.activeTab); }, 150));
   // the 3-D card re-lays out when the sidebar/tab heights change
@@ -899,6 +1004,7 @@ async function boot() {
     await run();
     if (q.has("analyze") && state.rotors) { state.mode = "analyze"; $$(".mode-btn").forEach(x => x.classList.toggle("active", x.dataset.mode === "analyze")); refreshControlState(); await run(); }
     if (q.get("tab")) showTab(q.get("tab"));
+    if (q.has("designs")) openDesigns();
   }
 }
 boot();

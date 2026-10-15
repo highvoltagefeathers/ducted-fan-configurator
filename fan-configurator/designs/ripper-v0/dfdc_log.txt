@@ -1,0 +1,973 @@
+===== PASS 1: rotor-only actuator disk =====
+
+==============================================================================
+ DFDC (Ducted Fan Design Code) is an aerodynamic and aeroacoustic design
+ and analysis tool for aircraft with propulsors in ducted fan configurations.
+ 
+ This software was developed under the auspices and sponsorship of the
+ Tactical Technology Office (TTO) of the Defense Advanced Research
+ Projects Agency (DARPA).
+ 
+ Copyright (c) 2004, 2005, Booz Allen Hamilton Inc., All Rights Reserved
+ 
+ This program is free software; you can redistribute it and/or modify it
+ under the terms of the GNU General Public License as published by the
+ Free Software Foundation; either version 2 of the License, or (at your
+ option) any later version.
+ 
+ This program is distributed in the hope that it will be useful, but
+ WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License along
+ with this program; if not, write to the Free Software Foundation, Inc.,
+ 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+ 
+ Authors: Harold Youngren (guppy@maine.rr.com), Mark Drela (drela@mit.edu)
+ Program Management: Brad Tousley, Paul Eremenko (eremenko@alum.mit.edu)
+==============================================================================
+
+ =========================
+   DFDC Version 0.70
+ =========================
+ Reading file from DFDC Version  0.70
+ OPER data read from file
+  Qinf   =    15.00000    
+  Qref   =    15.00000    
+  RPM    =    7000.000      0.0000000E+00
+  Rho    =   0.8632300    
+  VSound =    326.5840    
+  rMU    =   1.6774600E-05
+  Alt    =    3.500000    
+  Xdwake =   0.8000000    
+  Nwake  =           20
+ AERO data read for disk #            1  # sections            1
+ ACTDISK data read from file
+  XDisk         =   8.1000000E-02
+  #Rotor points =           12
+ Actuator disk defined with #points =           10
+    R           BGAM
+     0.050000    10.000000
+     0.063889    10.000000
+     0.077778    10.000000
+     0.091667    10.000000
+     0.105556    10.000000
+     0.119444    10.000000
+     0.133333    10.000000
+     0.147222    10.000000
+     0.161111    10.000000
+     0.175000    10.000000
+
+ Reading airfoil: My fan                                                      
+ 
+ OPEN error on panel-parameter file case.pan
+ No repaneling parameters from file case.pan
+
+
+ =========================================================
+
+  QUIT   Exit program
+
+  LOAD f Read ducted fan case from file
+  SAVE f Write current ducted fan case to file
+
+ .OPER   Direct operating point(s)
+ .GDES   Geometry design facility
+ .QDES   Mixed-inverse design facility
+
+  PANE   Regenerate paneled geometry from buffer geometry
+ .PPAR   Show/change paneling
+  PCOP   Copy buffer geometry directly into paneling
+  PWRT f Write paneling parameters to disk file
+  PGET f Get paneling parameters from disk file
+
+ .PLOP   Plotting options
+  NAME s Change case name
+  INIT   Reinitialize DFDC
+  DEBU   toggle debugging flag
+
+ DFDC   c>   ...............................................
+
+  S ize of plot object          10.00"
+  D imensions of page           11.00 x  8.50"
+  M argins from page edges       0.00",  0.00"
+  F ont size (relative)          0.0130
+  P oint-symbol size (relative)  0.0040
+  W indow/screen size fraction   0.7000
+  B lowup input method:        Cursor    
+  O rientation of plot:        Landscape 
+  C olor PostScript output?     F
+
+      Option, Value   (or <Return>)    c>   *** Item not recognized ***
+ ...............................................
+
+  S ize of plot object          10.00"
+  D imensions of page           11.00 x  8.50"
+  M argins from page edges       0.00",  0.00"
+  F ont size (relative)          0.0130
+  P oint-symbol size (relative)  0.0040
+  W indow/screen size fraction   0.7000
+  B lowup input method:        Cursor    
+  O rientation of plot:        Landscape 
+  C olor PostScript output?     F
+
+      Option, Value   (or <Return>)    c>  
+ DFDC   c>   Setting default respacing parameters
+ Repaneling buffer geometry
+
+ =============================================================
+
+  Element   1
+
+  ........................................................
+
+  Number of panel nodes =   59
+  Prescribed panel node spacing parameters ...
+     dsL/dsAvg =  0.600      dsR/dsAvg =  0.600
+    curvature scaling exponent =  1.0000
+    curvature smoothing factor =  1.0000
+
+  Actual resulting surface spacings ...
+     dsL/dsAvg =  0.7987     dsR/dsAvg =  0.6652
+   dsmin/dsAvg =  0.6577   dsmax/dsAvg =  1.3388
+
+ =============================================================
+
+  Element   2
+
+  ........................................................
+
+  Number of panel nodes =   99
+  Prescribed panel node spacing parameters ...
+     dsL/dsAvg =  0.600      dsR/dsAvg =  0.600
+    curvature scaling exponent =  1.0000
+    curvature smoothing factor =  1.0000
+
+  Actual resulting surface spacings ...
+     dsL/dsAvg =  0.7651     dsR/dsAvg =  0.7698
+   dsmin/dsAvg =  0.4134   dsmax/dsAvg =  1.3022
+ 
+ Grid relaxation iteration
+          10   Dmax =   6.8809190E-05   1.000000    
+          20   Dmax =   1.0175269E-05   1.000000    
+          30   Dmax =   2.0500449E-06   1.000000    
+          40   Dmax =   6.0862891E-07   1.000000    
+
+.OPERi   c>   Driving BGAM to get specified thrust
+ LAMPC: Romberg convergence failed.  Error =  4.7683716E-06
+ LAMPC: Romberg convergence failed.  Error =  7.6293945E-06
+ LAMPC: Romberg convergence failed.  Error =  7.6293945E-06
+  1 dGTHmax=********** @IP=   1 RLX= 0.40000
+  2 dGTHmax= 475.02423 @IP=   1 RLX= 0.24000
+  3 dGTHmax= 350.06644 @IP=   1 RLX= 0.48000
+  4 dGTHmax= 153.67044 @IP=   1 RLX= 0.48000
+  5 dGTHmax=  58.09146 @IP=   1 RLX= 0.48000
+  6 dGTHmax=  19.17149 @IP=   1 RLX= 0.48000
+  7 dGTHmax=   5.87899 @IP=   1 RLX= 0.24000
+  8 dGTHmax=   1.75565 @IP=   1 RLX= 0.48000
+  9 dGTHmax=   0.52397 @IP=   1 RLX= 0.48000
+ 10 dGTHmax=   0.15694 @IP=   1 RLX= 0.48000
+ 11 dGTHmax=   0.04744 @IP=   1 RLX= 0.48000
+  1 RLX= 0.40000 dBGmax=  3.65592
+  1 dGTHmax=  39.74985 @IP= 198 RLX= 0.40000
+  2 dGTHmax=  15.54443 @IP= 198 RLX= 0.48000
+  3 dGTHmax=   3.71409 @IP= 190 RLX= 0.48000
+  4 dGTHmax=   0.87539 @IP= 187 RLX= 0.48000
+  5 dGTHmax=   0.21351 @IP= 186 RLX= 0.48000
+  6 dGTHmax=   0.05509 @IP= 185 RLX= 0.48000
+  2 RLX= 0.40000 dBGmax=  2.34221
+  1 dGTHmax=  25.02533 @IP= 198 RLX= 0.40000
+  2 dGTHmax=   9.64684 @IP= 198 RLX= 0.48000
+  3 dGTHmax=   2.31426 @IP= 198 RLX= 0.48000
+  4 dGTHmax=   0.55321 @IP= 187 RLX= 0.48000
+  5 dGTHmax=   0.13696 @IP= 186 RLX= 0.48000
+  6 dGTHmax=   0.03584 @IP= 185 RLX= 0.48000
+  3 RLX= 0.40000 dBGmax=  1.48078
+  1 dGTHmax=  15.63834 @IP=   1 RLX= 0.40000
+  2 dGTHmax=   5.94273 @IP= 198 RLX= 0.48000
+  3 dGTHmax=   1.42579 @IP= 198 RLX= 0.48000
+  4 dGTHmax=   0.34290 @IP= 187 RLX= 0.48000
+  5 dGTHmax=   0.08540 @IP= 186 RLX= 0.48000
+  6 dGTHmax=   0.02242 @IP= 185 RLX= 0.48000
+  4 RLX= 0.40000 dBGmax=  0.92673
+  1 dGTHmax=   9.71294 @IP=   1 RLX= 0.40000
+  2 dGTHmax=   3.64619 @IP= 198 RLX= 0.48000
+  3 dGTHmax=   0.87317 @IP= 198 RLX= 0.48000
+  4 dGTHmax=   0.21038 @IP= 187 RLX= 0.48000
+  5 dGTHmax=   0.05244 @IP= 186 RLX= 0.48000
+  5 RLX= 0.40000 dBGmax=  0.57609
+  1 dGTHmax=   5.98820 @IP=   1 RLX= 0.40000
+  2 dGTHmax=   2.22634 @IP= 198 RLX= 0.48000
+  3 dGTHmax=   0.53188 @IP= 198 RLX= 0.48000
+  4 dGTHmax=   0.12807 @IP= 187 RLX= 0.48000
+  5 dGTHmax=   0.03187 @IP= 186 RLX= 0.48000
+  6 RLX= 0.40000 dBGmax=  0.35580
+  1 dGTHmax=   3.68723 @IP=   1 RLX= 0.40000
+  2 dGTHmax=   1.36187 @IP= 198 RLX= 0.48000
+  3 dGTHmax=   0.32475 @IP= 198 RLX= 0.48000
+  4 dGTHmax=   0.07815 @IP= 187 RLX= 0.48000
+  5 dGTHmax=   0.01942 @IP= 186 RLX= 0.48000
+  7 RLX= 0.40000 dBGmax=  0.21894
+  1 dGTHmax=   2.26470 @IP=   1 RLX= 0.40000
+  2 dGTHmax=   0.83276 @IP= 198 RLX= 0.48000
+  3 dGTHmax=   0.19831 @IP= 198 RLX= 0.48000
+  4 dGTHmax=   0.04769 @IP= 187 RLX= 0.48000
+  8 RLX= 0.40000 dBGmax=  0.13501
+  1 dGTHmax=   1.37435 @IP=   1 RLX= 0.40000
+  2 dGTHmax=   0.50354 @IP= 198 RLX= 0.48000
+  3 dGTHmax=   0.11976 @IP= 198 RLX= 0.48000
+  4 dGTHmax=   0.02879 @IP= 187 RLX= 0.48000
+  9 RLX= 0.40000 dBGmax=  0.08252
+  1 dGTHmax=   0.83954 @IP=   1 RLX= 0.40000
+  2 dGTHmax=   0.30705 @IP= 198 RLX= 0.48000
+  3 dGTHmax=   0.07299 @IP= 198 RLX= 0.48000
+  4 dGTHmax=   0.01755 @IP= 187 RLX= 0.48000
+ 10 RLX= 0.40000 dBGmax=  0.05039
+  1 dGTHmax=   0.51240 @IP=   1 RLX= 0.40000
+  2 dGTHmax=   0.18719 @IP= 198 RLX= 0.48000
+  3 dGTHmax=   0.04448 @IP= 198 RLX= 0.48000
+ 11 RLX= 0.40000 dBGmax=  0.03139
+  1 dGTHmax=   0.29943 @IP=   1 RLX= 0.40000
+  2 dGTHmax=   0.10917 @IP= 198 RLX= 0.48000
+  3 dGTHmax=   0.02592 @IP= 198 RLX= 0.48000
+ 12 RLX= 0.40000 dBGmax=  0.01888
+  1 dGTHmax=   0.18046 @IP=   1 RLX= 0.40000
+  2 dGTHmax=   0.06578 @IP= 198 RLX= 0.48000
+  3 dGTHmax=   0.01562 @IP= 198 RLX= 0.48000
+ 13 RLX= 0.40000 dBGmax=  0.01136
+  1 dGTHmax=   0.10861 @IP=   1 RLX= 0.40000
+  2 dGTHmax=   0.03957 @IP= 198 RLX= 0.48000
+  3 dGTHmax=   0.00939 @IP= 198 RLX= 0.48000
+  4 dGTHmax=   0.00226 @IP= 186 RLX= 0.48000
+
+ ==============================================================================
+ DFDC  Case:  My fan                          
+
+ ------------------------------------------------------------------------------
+ Flow condition and total forces
+
+  Vinf(m/s) :    15.000    Alt.(km)   :    0.004   DeltaT(dgC):   0.0000
+ rho(kg/m3) :   0.86323    Vsound(m/s):  326.584     mu(kg/m-s) : 0.1677E-04
+ Thrust(N)  :   200.       Power(W)   :  0.798E+04   Efficiency :   0.3765
+ Tvisc (N)  :     0.0000   Pvisc(W)   :   0.00       Induced Eff:   0.3765
+ Tduct(N)   :   103.6341   torQue(N-m):   10.9       Ideal Eff  :   0.3533
+
+  Area:    0.09167  Radius:    0.17799 Omega:  733.03833  Reference data
+    Ct:    1.06150      Cp:    1.01830     J:    0.36117  by(Rho,N,Dia)
+    Tc:   20.72168      Pc:   55.03810   adv:    0.11497  by(Rho,Vinf,Area)  
+   CT0:    0.14867     CP0:    0.04540   FOM:    0.63136  by(Rho,R*Omg,Area)
+ ------------------------------------------------------------------------------
+ Disk #   1     Actuator Disk Rotor           
+ # blades   :  5           RPM        :   7000.000    adv. ratio:   0.1150
+ Thrust(N)  :   96.7       Power(W)   :  0.798E+04   Efficiency :   0.1817
+ Tvisc (N)  :     0.0000   Pvisc(W)   :   0.00       Induced Eff:   0.1817
+ torQue(N-m):    10.8856   Qvisc(N-m) :   10.9       Ideal Eff  :   0.4633
+ radius(m)  :   0.1780     hub rad.(m):   0.0500     VAavg (m/s):  73.3901
+
+  Area:    0.09167  Radius:    0.17799 Omega:  733.03833  Reference data
+    Ct:    0.51224      Cp:    1.01830     J:    0.36117  by(Rho,N,Dia)
+    Tc:    9.99959      Pc:   55.03810   adv:    0.11497  by(Rho,Vinf,Area)  
+   CT0:    0.07174     CP0:    0.04540                    by(Rho,R*Omg,Area)
+ Sigma:    0.00000 CT0/Sig:    0.00000
+ ------------------------------------------------------------------------------
+   i    r/R     c/R  beta(deg)      CL       Cd     RE        Mach      B*Gam
+   1  0.314                                                   0.235     11.777
+   2  0.379                                                   0.245     11.777
+   3  0.444                                                   0.260     11.777
+   4  0.510                                                   0.277     11.777
+   5  0.575                                                   0.296     11.777
+   6  0.640                                                   0.318     11.777
+   7  0.706                                                   0.340     11.777
+   8  0.771                                                   0.364     11.777
+   9  0.837                                                   0.389     11.777
+  10  0.902                                                   0.414     11.777
+  11  0.967                                                   0.439     11.777
+
+.OPERi   c>   QUIT command not recognized.  Type a "?" for list
+
+.OPERi   c>  
+ DFDC   c>  
+
+===== PASS 2: rotor + stator =====
+
+==============================================================================
+ DFDC (Ducted Fan Design Code) is an aerodynamic and aeroacoustic design
+ and analysis tool for aircraft with propulsors in ducted fan configurations.
+ 
+ This software was developed under the auspices and sponsorship of the
+ Tactical Technology Office (TTO) of the Defense Advanced Research
+ Projects Agency (DARPA).
+ 
+ Copyright (c) 2004, 2005, Booz Allen Hamilton Inc., All Rights Reserved
+ 
+ This program is free software; you can redistribute it and/or modify it
+ under the terms of the GNU General Public License as published by the
+ Free Software Foundation; either version 2 of the License, or (at your
+ option) any later version.
+ 
+ This program is distributed in the hope that it will be useful, but
+ WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License along
+ with this program; if not, write to the Free Software Foundation, Inc.,
+ 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+ 
+ Authors: Harold Youngren (guppy@maine.rr.com), Mark Drela (drela@mit.edu)
+ Program Management: Brad Tousley, Paul Eremenko (eremenko@alum.mit.edu)
+==============================================================================
+
+ =========================
+   DFDC Version 0.70
+ =========================
+ Reading file from DFDC Version  0.70
+ OPER data read from file
+  Qinf   =    15.00000    
+  Qref   =    15.00000    
+  RPM    =    7000.000      0.0000000E+00
+  Rho    =   0.8632300    
+  VSound =    326.5840    
+  rMU    =   1.6774600E-05
+  Alt    =    3.500000    
+  Xdwake =   0.8000000    
+  Nwake  =           20
+ AERO data read for disk #            1  # sections            1
+ ACTDISK data read from file
+  XDisk         =   8.1000000E-02
+  #Rotor points =           12
+ Actuator disk defined with #points =           10
+    R           BGAM
+     0.050000    11.777000
+     0.063889    11.777000
+     0.077778    11.777000
+     0.091667    11.777000
+     0.105556    11.777000
+     0.119444    11.777000
+     0.133333    11.777000
+     0.147222    11.777000
+     0.161111    11.777000
+     0.175000    11.777000
+ AERO data read for disk #            2  # sections            1
+ ACTDISK data read from file
+  XDisk         =   0.1810000    
+  #Rotor points =           12
+ Actuator disk defined with #points =           10
+    R           BGAM
+     0.041260   -11.777000
+     0.056641   -11.777000
+     0.072021   -11.777000
+     0.087402   -11.777000
+     0.102783   -11.777000
+     0.118164   -11.777000
+     0.133545   -11.777000
+     0.148925   -11.777000
+     0.164306   -11.777000
+     0.179687   -11.777000
+
+ Reading airfoil: My fan                                                      
+ 
+ OPEN error on panel-parameter file case.pan
+ No repaneling parameters from file case.pan
+
+
+ =========================================================
+
+  QUIT   Exit program
+
+  LOAD f Read ducted fan case from file
+  SAVE f Write current ducted fan case to file
+
+ .OPER   Direct operating point(s)
+ .GDES   Geometry design facility
+ .QDES   Mixed-inverse design facility
+
+  PANE   Regenerate paneled geometry from buffer geometry
+ .PPAR   Show/change paneling
+  PCOP   Copy buffer geometry directly into paneling
+  PWRT f Write paneling parameters to disk file
+  PGET f Get paneling parameters from disk file
+
+ .PLOP   Plotting options
+  NAME s Change case name
+  INIT   Reinitialize DFDC
+  DEBU   toggle debugging flag
+
+ DFDC   c>   ...............................................
+
+  S ize of plot object          10.00"
+  D imensions of page           11.00 x  8.50"
+  M argins from page edges       0.00",  0.00"
+  F ont size (relative)          0.0130
+  P oint-symbol size (relative)  0.0040
+  W indow/screen size fraction   0.7000
+  B lowup input method:        Cursor    
+  O rientation of plot:        Landscape 
+  C olor PostScript output?     F
+
+      Option, Value   (or <Return>)    c>   *** Item not recognized ***
+ ...............................................
+
+  S ize of plot object          10.00"
+  D imensions of page           11.00 x  8.50"
+  M argins from page edges       0.00",  0.00"
+  F ont size (relative)          0.0130
+  P oint-symbol size (relative)  0.0040
+  W indow/screen size fraction   0.7000
+  B lowup input method:        Cursor    
+  O rientation of plot:        Landscape 
+  C olor PostScript output?     F
+
+      Option, Value   (or <Return>)    c>  
+ DFDC   c>   Setting default respacing parameters
+ Repaneling buffer geometry
+
+ =============================================================
+
+  Element   1
+
+  ........................................................
+
+  Number of panel nodes =   59
+  Prescribed panel node spacing parameters ...
+     dsL/dsAvg =  0.600      dsR/dsAvg =  0.600
+    curvature scaling exponent =  1.0000
+    curvature smoothing factor =  1.0000
+
+  Actual resulting surface spacings ...
+     dsL/dsAvg =  0.7987     dsR/dsAvg =  0.6652
+   dsmin/dsAvg =  0.6577   dsmax/dsAvg =  1.3388
+
+ =============================================================
+
+  Element   2
+
+  ........................................................
+
+  Number of panel nodes =   99
+  Prescribed panel node spacing parameters ...
+     dsL/dsAvg =  0.600      dsR/dsAvg =  0.600
+    curvature scaling exponent =  1.0000
+    curvature smoothing factor =  1.0000
+
+  Actual resulting surface spacings ...
+     dsL/dsAvg =  0.7651     dsR/dsAvg =  0.7698
+   dsmin/dsAvg =  0.4134   dsmax/dsAvg =  1.3022
+ 
+ Grid relaxation iteration
+          10   Dmax =   6.7590576E-05   1.000000    
+          20   Dmax =   9.3619037E-06   1.000000    
+          30   Dmax =   2.0640741E-06   1.000000    
+          40   Dmax =   6.2088077E-07   1.000000    
+
+.OPERi(1)   c>   Driving BGAM to get specified thrust
+ LAMPC: Romberg convergence failed.  Error =  4.7683716E-06
+ LAMPC: Romberg convergence failed.  Error =  7.6293945E-06
+ LAMPC: Romberg convergence failed.  Error =  7.6293945E-06
+  1 dGTHmax=-273.58682 @IP=   1 RLX= 0.40000
+  2 dGTHmax=  84.03907 @IP=   1 RLX= 0.24000
+  3 dGTHmax=  60.69444 @IP=   1 RLX= 0.48000
+  4 dGTHmax=  25.59769 @IP=   1 RLX= 0.48000
+  5 dGTHmax=  10.50958 @IP=   1 RLX= 0.48000
+  6 dGTHmax=   4.32154 @IP=   1 RLX= 0.48000
+  7 dGTHmax=   1.78801 @IP=   1 RLX= 0.24000
+  8 dGTHmax=   0.74215 @IP=   1 RLX= 0.48000
+  9 dGTHmax=   0.31025 @IP=   1 RLX= 0.48000
+ 10 dGTHmax=   0.12984 @IP=   1 RLX= 0.48000
+ 11 dGTHmax=   0.05437 @IP= 192 RLX= 0.24000
+  1 RLX= 0.40000 dBGmax=  4.63327
+  1 dGTHmax=  28.19807 @IP= 210 RLX= 0.40000
+  2 dGTHmax=  15.49967 @IP= 210 RLX= 0.48000
+  3 dGTHmax=   7.08749 @IP= 210 RLX= 0.48000
+  4 dGTHmax=   3.28273 @IP= 210 RLX= 0.48000
+  5 dGTHmax=   1.53725 @IP=   1 RLX= 0.48000
+  6 dGTHmax=   0.72416 @IP= 192 RLX= 0.48000
+  7 dGTHmax=   0.34231 @IP= 193 RLX= 0.48000
+  8 dGTHmax=   0.16236 @IP= 198 RLX= 0.48000
+  9 dGTHmax=   0.07707 @IP= 199 RLX= 0.48000
+ 10 dGTHmax=   0.03659 @IP= 199 RLX= 0.48000
+  2 RLX= 0.40000 dBGmax=  2.81929
+  1 dGTHmax=  11.15256 @IP= 210 RLX= 0.40000
+  2 dGTHmax=   6.43901 @IP= 210 RLX= 0.48000
+  3 dGTHmax=   3.19060 @IP= 210 RLX= 0.48000
+  4 dGTHmax=   1.59702 @IP= 210 RLX= 0.48000
+  5 dGTHmax=   0.80391 @IP= 210 RLX= 0.48000
+  6 dGTHmax=   0.40605 @IP=   1 RLX= 0.48000
+  7 dGTHmax=   0.20535 @IP=   1 RLX= 0.48000
+  8 dGTHmax=   0.10392 @IP=   1 RLX= 0.48000
+  9 dGTHmax=   0.05259 @IP=   1 RLX= 0.48000
+  3 RLX= 0.40000 dBGmax=  1.67241
+  1 dGTHmax=   6.21213 @IP= 166 RLX= 0.40000
+  2 dGTHmax=   2.21478 @IP= 166 RLX= 0.48000
+  3 dGTHmax=   0.98723 @IP= 210 RLX= 0.48000
+  4 dGTHmax=   0.51026 @IP= 210 RLX= 0.48000
+  5 dGTHmax=   0.26414 @IP= 210 RLX= 0.48000
+  6 dGTHmax=   0.13684 @IP= 210 RLX= 0.48000
+  7 dGTHmax=   0.07091 @IP= 210 RLX= 0.48000
+  8 dGTHmax=   0.03675 @IP=   1 RLX= 0.48000
+  4 RLX= 0.40000 dBGmax=  0.96667
+  1 dGTHmax=   3.80399 @IP= 166 RLX= 0.40000
+  2 dGTHmax=   1.35044 @IP= 166 RLX= 0.48000
+  3 dGTHmax=   0.30501 @IP= 772 RLX= 0.48000
+  4 dGTHmax=   0.07726 @IP= 772 RLX= 0.48000
+  5 dGTHmax=   0.02942 @IP=   1 RLX= 0.48000
+  5 RLX= 0.40000 dBGmax=  0.54667
+  1 dGTHmax=   2.22135 @IP= 166 RLX= 0.40000
+  2 dGTHmax=   0.78572 @IP= 166 RLX= 0.48000
+  3 dGTHmax=   0.17847 @IP= 772 RLX= 0.48000
+  4 dGTHmax=  -0.06102 @IP=   1 RLX= 0.48000
+  5 dGTHmax=  -0.03176 @IP=   1 RLX= 0.48000
+  6 RLX= 0.40000 dBGmax=  0.30327
+  1 dGTHmax=   1.25884 @IP= 166 RLX= 0.40000
+  2 dGTHmax=   0.44400 @IP= 166 RLX= 0.48000
+  3 dGTHmax=  -0.12411 @IP=   1 RLX= 0.48000
+  4 dGTHmax=  -0.06478 @IP=   1 RLX= 0.48000
+  5 dGTHmax=  -0.03361 @IP=   1 RLX= 0.48000
+  7 RLX= 0.40000 dBGmax=  0.16624
+  1 dGTHmax=   0.69851 @IP= 166 RLX= 0.40000
+  2 dGTHmax=   0.24592 @IP= 166 RLX= 0.48000
+  3 dGTHmax=  -0.08646 @IP=   1 RLX= 0.48000
+  4 dGTHmax=  -0.04506 @IP=   1 RLX= 0.48000
+  8 RLX= 0.40000 dBGmax=  0.09093
+  1 dGTHmax=   0.37802 @IP= 166 RLX= 0.40000
+  2 dGTHmax=   0.13293 @IP= 166 RLX= 0.48000
+  3 dGTHmax=  -0.05280 @IP=   1 RLX= 0.48000
+  9 RLX= 0.40000 dBGmax=  0.05017
+  1 dGTHmax=   0.19392 @IP= 166 RLX= 0.40000
+  2 dGTHmax=   0.06801 @IP= 166 RLX= 0.48000
+  3 dGTHmax=  -0.03076 @IP=   1 RLX= 0.48000
+ 10 RLX= 0.40000 dBGmax=  0.02645
+  1 dGTHmax=   0.10276 @IP= 166 RLX= 0.40000
+  2 dGTHmax=   0.03605 @IP= 166 RLX= 0.48000
+ 11 RLX= 0.40000 dBGmax=  0.01525
+  1 dGTHmax=   0.04192 @IP= 166 RLX= 0.40000
+ 12 RLX= 0.40000 dBGmax=  0.00849
+  1 dGTHmax=  -0.01760 @IP=   1 RLX= 0.40000
+  2 dGTHmax=  -0.01057 @IP=   1 RLX= 0.48000
+  3 dGTHmax=  -0.00548 @IP=   1 RLX= 0.48000
+  4 dGTHmax=  -0.00282 @IP=   1 RLX= 0.48000
+
+ ==============================================================================
+ DFDC  Case:  My fan                          
+
+ ------------------------------------------------------------------------------
+ Flow condition and total forces
+
+  Vinf(m/s) :    15.000    Alt.(km)   :    0.004   DeltaT(dgC):   0.0000
+ rho(kg/m3) :   0.86323    Vsound(m/s):  326.584     mu(kg/m-s) : 0.1677E-04
+ Thrust(N)  :   200.       Power(W)   :  0.671E+04   Efficiency :   0.4471
+ Tvisc (N)  :     0.0000   Pvisc(W)   :   0.00       Induced Eff:   0.4471
+ Tduct(N)   :   103.0580   torQue(N-m):  -1.26       Ideal Eff  :   0.3534
+
+  Area:    0.09167  Radius:    0.17799 Omega:  733.03833  Reference data
+    Ct:    1.06066      Cp:    0.85686     J:    0.36117  by(Rho,N,Dia)
+    Tc:   20.70539      Pc:   46.31220   adv:    0.11497  by(Rho,Vinf,Area)  
+   CT0:    0.14856     CP0:    0.03820   FOM:    0.74944  by(Rho,R*Omg,Area)
+ ------------------------------------------------------------------------------
+ Disk #   1     Actuator Disk Rotor           
+ # blades   :  5           RPM        :   7000.000    adv. ratio:   0.1150
+ Thrust(N)  :   86.3       Power(W)   :  0.671E+04   Efficiency :   0.1929
+ Tvisc (N)  :     0.0000   Pvisc(W)   :   0.00       Induced Eff:   0.1929
+ torQue(N-m):     9.1597   Qvisc(N-m) :   9.16       Ideal Eff  :   0.4818
+ radius(m)  :   0.1780     hub rad.(m):   0.0500     VAavg (m/s):  70.1752
+
+  Area:    0.09167  Radius:    0.17799 Omega:  733.03833  Reference data
+    Ct:    0.45754      Cp:    0.85686     J:    0.36117  by(Rho,N,Dia)
+    Tc:    8.93164      Pc:   46.31220   adv:    0.11497  by(Rho,Vinf,Area)  
+   CT0:    0.06408     CP0:    0.03820                    by(Rho,R*Omg,Area)
+ Sigma:    0.00000 CT0/Sig:    0.00000
+ ------------------------------------------------------------------------------
+   i    r/R     c/R  beta(deg)      CL       Cd     RE        Mach      B*Gam
+   1  0.314                                                   0.228     10.364
+   2  0.379                                                   0.239     10.364
+   3  0.444                                                   0.254     10.364
+   4  0.510                                                   0.272     10.364
+   5  0.575                                                   0.292     10.364
+   6  0.640                                                   0.313     10.364
+   7  0.706                                                   0.336     10.364
+   8  0.771                                                   0.360     10.364
+   9  0.837                                                   0.385     10.364
+  10  0.902                                                   0.410     10.364
+  11  0.967                                                   0.436     10.364
+ ------------------------------------------------------------------------------
+ Disk #   2     Actuator Disk Stator          
+ # blades   :  5           RPM        :      0.000    adv. ratio:   0.0000
+ Thrust(N)  :   10.7       Power(W)   :   0.00       Efficiency :   0.1929
+ Tvisc (N)  :     0.0000   Pvisc(W)   :   0.00       Induced Eff:   0.1929
+ torQue(N-m):   -10.4218   Qvisc(N-m) :  -10.4       Ideal Eff  :   0.8219
+ radius(m)  :   0.1827     hub rad.(m):   0.0413     VAavg (m/s):  64.7365
+
+  Area:    0.09950  Radius:    0.18268 Omega:    0.00000  Reference data
+    Ct:    0.00000      Cp:    0.00000     J:    0.00000  by(Rho,N,Dia)
+    Tc:    1.05489      Pc:    0.00000   adv:    0.00000  by(Rho,Vinf,Area)  
+   CT0:    0.00000     CP0:    0.00000                    by(Rho,R*Omg,Area)
+ Sigma:    0.00000 CT0/Sig:    0.00000
+ ------------------------------------------------------------------------------
+   i    r/R     c/R  beta(deg)      CL       Cd     RE        Mach      B*Gam
+   1  0.266                                                   0.198    -11.777
+   2  0.345                                                   0.198    -11.777
+   3  0.418                                                   0.198    -11.777
+   4  0.489                                                   0.197    -11.777
+   5  0.560                                                   0.198    -11.777
+   6  0.629                                                   0.198    -11.777
+   7  0.697                                                   0.199    -11.777
+   8  0.765                                                   0.199    -11.777
+   9  0.833                                                   0.200    -11.777
+  10  0.900                                                   0.201    -11.777
+  11  0.967                                                   0.202    -11.777
+
+.OPERi(1)   c>  
+.OPERi(2)   c>  
+.OPERi(2)   c>  
+.OPERi(2)   c>  
+Blades for disk   2 designed with    7 blades:
+     r/R         r        Ch  Beta0deg      CL        W     BGam    dCLdA  alfadeg
+   0.2664    0.0487    0.1084   90.484    0.480   64.696  -11.777    2.183   12.587
+   0.3445    0.0629    0.1085   89.528    0.480   64.635  -11.777    2.603   10.555
+   0.4181    0.0764    0.1086   89.144    0.480   64.536  -11.777    2.998    9.164
+   0.4895    0.0894    0.1087   88.961    0.480   64.496  -11.777    3.378    8.133
+   0.5596    0.1022    0.1086   88.900    0.480   64.537  -11.777    3.765    7.298
+   0.6288    0.1149    0.1084   88.912    0.480   64.657  -11.777    4.168    6.591
+   0.6973    0.1274    0.1081   88.922    0.480   64.848  -11.777    4.561    6.024
+   0.7653    0.1398    0.1077   88.953    0.480   65.099  -11.777    4.963    5.536
+   0.8328    0.1521    0.1072   88.985    0.480   65.396  -11.777    5.367    5.120
+   0.8999    0.1644    0.1067   88.993    0.480   65.719  -11.777    5.739    4.787
+   0.9667    0.1766    0.1062   88.931    0.480   66.036  -11.777    6.012    4.570
+
+.OPERi(2)   c>  
+.OPERi(1)   c>  
+.OPERi(1)   c>  
+.OPERi(1)   c>  
+Blades for disk   1 designed with    9 blades:
+     r/R         r        Ch  Beta0deg      CL        W     BGam    dCLdA  alfadeg
+   0.3136    0.0558    0.0645   74.984    0.480   74.344   10.364    2.865    5.571
+   0.3790    0.0675    0.0599   65.488    0.492   78.151   10.364    3.545    3.930
+   0.4443    0.0791    0.0551   57.356    0.504   82.995   10.364    4.564    2.309
+   0.5097    0.0907    0.0503   50.960    0.516   88.789   10.364    5.615    1.249
+   0.5751    0.1024    0.0458   46.178    0.528   95.307   10.364    6.249    0.826
+   0.6405    0.1140    0.0417   42.686    0.540  102.365   10.364    6.293    0.901
+   0.7058    0.1256    0.0380   39.825    0.552  109.830   10.364    6.344    0.969
+   0.7712    0.1373    0.0347   37.472    0.564  117.612   10.364    6.403    1.030
+   0.8366    0.1489    0.0318   35.529    0.576  125.643   10.364    6.470    1.083
+   0.9019    0.1605    0.0293   33.919    0.588  133.876   10.364    6.546    1.128
+   0.9673    0.1722    0.0270   32.577    0.600  142.272   10.364    6.631    1.164
+
+.OPERi(1)   c>   Using current blade...
+  1 dGTHmax=  -0.00025 @IP= 771  dBGmax=   0.00002 @IR=  11 RLX= 0.20000
+
+ ==============================================================================
+ DFDC  Case:  My fan                          
+
+ ------------------------------------------------------------------------------
+ Flow condition and total forces
+
+  Vinf(m/s) :    15.000    Alt.(km)   :    0.004   DeltaT(dgC):   0.0000
+ rho(kg/m3) :   0.86323    Vsound(m/s):  326.584     mu(kg/m-s) : 0.1677E-04
+ Thrust(N)  :   196.       Power(W)   :  0.691E+04   Efficiency :   0.4256
+ Tvisc (N)  :    -4.0159   Pvisc(W)   :   198.       Induced Eff:   0.4471
+ Tduct(N)   :   103.0573   torQue(N-m):  -1.01       Ideal Eff  :   0.3562
+
+  Area:    0.09167  Radius:    0.17799 Omega:  733.03833  Reference data
+    Ct:    1.03938      Cp:    0.88210     J:    0.36117  by(Rho,N,Dia)
+    Tc:   20.28987      Pc:   47.67683   adv:    0.11497  by(Rho,Vinf,Area)  
+   CT0:    0.14557     CP0:    0.03933   FOM:    0.70618  by(Rho,R*Omg,Area)
+ ------------------------------------------------------------------------------
+ Disk #   1     Bladed Rotor                  
+ # blades   :  9           RPM        :   7000.000    adv. ratio:   0.1150
+ Thrust(N)  :   84.4       Power(W)   :  0.691E+04   Efficiency :   0.1831
+ Tvisc (N)  :    -1.9470   Pvisc(W)   :   198.       Induced Eff:   0.1929
+ torQue(N-m):     9.4296   Qvisc(N-m) :   9.16       Ideal Eff  :   0.4855
+ radius(m)  :   0.1780     hub rad.(m):   0.0500     VAavg (m/s):  70.1749
+
+  Area:    0.09167  Radius:    0.17799 Omega:  733.03833  Reference data
+    Ct:    0.44722      Cp:    0.88210     J:    0.36117  by(Rho,N,Dia)
+    Tc:    8.73023      Pc:   47.67683   adv:    0.11497  by(Rho,Vinf,Area)  
+   CT0:    0.06264     CP0:    0.03933                    by(Rho,R*Omg,Area)
+ Sigma:    0.57518 CT0/Sig:    0.10890
+ ------------------------------------------------------------------------------
+   i    r/R     c/R    beta(deg)    CL       Cd   REx10^3    Mach      B*Gam
+   1  0.314  0.3626   74.98     0.480    0.0119  246.90      0.228     10.364
+   2  0.379  0.3365   65.49     0.492    0.0121  240.88      0.239     10.364
+   3  0.444  0.3093   57.36     0.504    0.0124  235.15      0.254     10.364
+   4  0.510  0.2824   50.96     0.516    0.0126  229.68      0.272     10.364
+   5  0.575  0.2571   46.18     0.528    0.0128  224.46      0.292     10.364
+   6  0.640  0.2341   42.69     0.540    0.0131  219.47      0.313     10.364
+   7  0.706  0.2134   39.82     0.552    0.0134  214.70      0.336     10.364
+   8  0.771  0.1951   37.47     0.564    0.0137  210.13      0.360     10.364
+   9  0.837  0.1788   35.53     0.576    0.0140  205.75      0.385     10.364
+  10  0.902  0.1644   33.92     0.588    0.0143  201.55      0.410     10.364
+  11  0.967  0.1516   32.58     0.600    0.0146  197.52      0.436     10.364
+ ------------------------------------------------------------------------------
+ Disk #   2     Bladed Stator                 
+ # blades   :  7           RPM        :      0.000    adv. ratio:   0.0000
+ Thrust(N)  :   8.67       Power(W)   :   0.00       Efficiency :   0.1831
+ Tvisc (N)  :    -2.0688   Pvisc(W)   :   0.00       Induced Eff:   0.1929
+ torQue(N-m):   -10.4446   Qvisc(N-m) :  -10.4       Ideal Eff  :   0.8472
+ radius(m)  :   0.1827     hub rad.(m):   0.0413     VAavg (m/s):  64.7363
+
+  Area:    0.09950  Radius:    0.18268 Omega:    0.00000  Reference data
+    Ct:    0.00000      Cp:    0.00000     J:    0.00000  by(Rho,N,Dia)
+    Tc:    0.85171      Pc:    0.00000   adv:    0.00000  by(Rho,Vinf,Area)  
+   CT0:    0.00000     CP0:    0.00000                    by(Rho,R*Omg,Area)
+ Sigma:    1.31352 CT0/Sig:    0.00000
+ ------------------------------------------------------------------------------
+   i    r/R     c/R    beta(deg)    CL       Cd   REx10^3    Mach      B*Gam
+   1  0.266  0.5931   90.48    -0.480    0.0107  360.74      0.198    -11.777
+   2  0.345  0.5937   89.53    -0.480    0.0107  360.74      0.198    -11.777
+   3  0.418  0.5946   89.14    -0.480    0.0107  360.74      0.198    -11.777
+   4  0.489  0.5950   88.96    -0.480    0.0107  360.74      0.197    -11.777
+   5  0.560  0.5946   88.90    -0.480    0.0107  360.74      0.198    -11.777
+   6  0.629  0.5935   88.91    -0.480    0.0107  360.74      0.198    -11.777
+   7  0.697  0.5917   88.92    -0.480    0.0107  360.74      0.199    -11.777
+   8  0.765  0.5895   88.95    -0.480    0.0107  360.74      0.199    -11.777
+   9  0.833  0.5868   88.99    -0.480    0.0107  360.74      0.200    -11.777
+  10  0.900  0.5839   88.99    -0.480    0.0107  360.74      0.201    -11.777
+  11  0.967  0.5811   88.93    -0.480    0.0107  360.74      0.202    -11.777
+
+ X-window size changed to  11.00" x  8.28"
+
+.OPERi(1)   c>  
+ ================================================
+   BL BL calculation
+   RE RN/m for V=Qref)        currently:  771908.    
+   TR transition points       currently:    1.000   1.000
+   N  N-crit for transition   currently:     9.000
+
+   P  plot  BL data
+   W  write BL data to file
+
+.BL     c>  
+ ** B.L. Analysis on element   1 side   1
+  Mach  =     0.00000
+  Uren  =   0.515E+05   Ampmax =   9.00000
+  Strn  =     0.09936   Ssep   =     0.28077
+  CXvis =     0.00484
+
+   S/Smax    S        X        Ue       Dstar      Theta      H12        Cf       Amp
+   0.000    0.000    0.000    0.000    0.00010    0.00004    2.236    0.00000    0.000
+   0.012    0.004    0.000    3.127    0.00008    0.00003    2.353    0.11301    0.000
+   0.023    0.007    0.000    9.299    0.00006    0.00002    2.351    0.05263    0.000
+   0.035    0.011    0.001   15.283    0.00006    0.00003    2.354    0.03152    0.000
+   0.047    0.015    0.002   21.055    0.00006    0.00003    2.360    0.02228    0.000
+   0.059    0.018    0.004   26.572    0.00006    0.00003    2.377    0.01715    0.000
+   0.071    0.022    0.005   31.801    0.00007    0.00003    2.396    0.01391    0.000
+   0.083    0.026    0.007   36.732    0.00007    0.00003    2.418    0.01166    0.000
+   0.096    0.030    0.010   41.348    0.00008    0.00003    2.442    0.01002    0.000
+   0.109    0.034    0.013   45.655    0.00008    0.00003    2.465    0.00879    0.000
+   0.122    0.038    0.015   49.668    0.00008    0.00003    2.492    0.00778    0.000
+   0.135    0.042    0.019   53.390    0.00009    0.00004    2.518    0.00699    0.000
+   0.149    0.046    0.022   56.839    0.00009    0.00004    2.545    0.00632    0.000
+   0.163    0.051    0.026   60.020    0.00010    0.00004    2.572    0.00576    0.000
+   0.177    0.055    0.030   62.933    0.00011    0.00004    2.597    0.00529    0.000
+   0.192    0.060    0.034   65.566    0.00011    0.00004    2.624    0.00486    0.000
+   0.206    0.064    0.038   67.914    0.00012    0.00004    2.652    0.00447    0.000
+   0.221    0.069    0.042   69.970    0.00013    0.00005    2.679    0.00411    0.000
+   0.236    0.073    0.047   71.689    0.00014    0.00005    2.710    0.00376    0.000
+   0.251    0.078    0.052   73.038    0.00015    0.00005    2.747    0.00341    0.000
+   0.267    0.083    0.056   73.966    0.00016    0.00006    2.791    0.00303    0.000
+   0.282    0.088    0.061   74.368    0.00017    0.00006    2.857    0.00259    0.000
+   0.298    0.093    0.066   73.831    0.00021    0.00007    3.035    0.00185    0.116
+   0.315    0.098    0.071   71.944    0.00031    0.00008    3.922    0.00036    0.815
+   0.335    0.104    0.077   70.213    0.00019    0.00010    1.858    0.00530    0.000
+   0.358    0.111    0.085   69.557    0.00022    0.00012    1.797    0.00519    0.000
+   0.382    0.119    0.092   69.368    0.00025    0.00014    1.756    0.00510    0.000
+   0.405    0.126    0.099   69.427    0.00028    0.00016    1.730    0.00501    0.000
+   0.429    0.133    0.106   69.677    0.00030    0.00018    1.712    0.00494    0.000
+   0.452    0.140    0.114   70.165    0.00032    0.00019    1.695    0.00490    0.000
+   0.475    0.148    0.121   71.195    0.00034    0.00020    1.675    0.00498    0.000
+   0.497    0.154    0.128   72.858    0.00034    0.00020    1.655    0.00517    0.000
+   0.515    0.160    0.133   74.076    0.00034    0.00021    1.651    0.00519    0.000
+   0.532    0.165    0.139   74.034    0.00037    0.00022    1.670    0.00488    0.000
+   0.550    0.171    0.144   73.404    0.00041    0.00024    1.696    0.00449    0.000
+   0.567    0.176    0.149   72.506    0.00046    0.00027    1.722    0.00412    0.000
+   0.585    0.182    0.155   71.329    0.00052    0.00030    1.750    0.00375    0.000
+   0.603    0.188    0.161   69.985    0.00060    0.00034    1.778    0.00341    0.000
+   0.622    0.193    0.166   68.506    0.00068    0.00038    1.807    0.00309    0.000
+   0.641    0.199    0.172   66.924    0.00079    0.00043    1.838    0.00278    0.000
+   0.661    0.205    0.178   65.286    0.00092    0.00049    1.873    0.00249    0.000
+   0.681    0.212    0.184   63.638    0.00108    0.00057    1.911    0.00222    0.000
+   0.702    0.218    0.190   61.988    0.00128    0.00066    1.955    0.00196    0.000
+   0.723    0.225    0.196   60.351    0.00153    0.00076    2.009    0.00170    0.000
+   0.745    0.231    0.203   58.742    0.00185    0.00089    2.074    0.00145    0.000
+   0.767    0.238    0.210   57.200    0.00226    0.00105    2.154    0.00120    0.000
+   0.789    0.245    0.216   55.789    0.00277    0.00123    2.248    0.00097    0.000
+   0.811    0.252    0.223   54.535    0.00338    0.00143    2.355    0.00076    0.000
+   0.832    0.258    0.229   53.430    0.00411    0.00166    2.477    0.00057    0.000
+   0.852    0.265    0.235   52.470    0.00496    0.00190    2.609    0.00041    0.000
+   0.871    0.271    0.241   51.638    0.00596    0.00216    2.752    0.00026    0.000
+   0.890    0.277    0.247   50.933    0.00706    0.00244    2.895    0.00014    0.000
+   0.909    0.282    0.252   50.361    0.00793    0.00266    2.980    0.00000    0.000
+   0.927    0.288    0.258   49.906    0.00821    0.00276    2.979    0.00000    0.000
+   0.945    0.294    0.263   49.581    0.00841    0.00283    2.975    0.00000    0.000
+   0.962    0.299    0.269   49.412    0.00852    0.00287    2.973    0.00000    0.000
+   0.979    0.304    0.274   49.453    0.00851    0.00287    2.972    0.00000    0.000
+   0.987    0.307    0.279   49.706    0.00852    0.00287    2.972    0.00000    0.000
+   1.000    0.311    0.282   50.549    0.00852    0.00287    2.974    0.00000    0.000
+
+ ** B.L. Analysis on element   2 side   1
+  Mach  =     0.00000
+  Uren  =   0.515E+05   Ampmax =   9.00000
+  Strn  =     0.19070   Ssep   =     0.27878
+  CXvis =     0.00149
+
+   S/Smax    S        X        Ue       Dstar      Theta      H12        Cf       Amp
+   0.000    0.000   -0.015    0.000    0.00014    0.00006    2.236    0.00000    0.000
+   0.015    0.005   -0.012    1.918    0.00014    0.00006    2.237    0.11535    0.000
+   0.030    0.009   -0.008    4.440    0.00012    0.00005    2.242    0.05867    0.000
+   0.045    0.014   -0.004    6.504    0.00013    0.00006    2.255    0.03529    0.000
+   0.062    0.019    0.001    8.184    0.00015    0.00007    2.269    0.02478    0.000
+   0.079    0.024    0.006    9.563    0.00017    0.00007    2.285    0.01885    0.000
+   0.098    0.029    0.011   10.683    0.00018    0.00008    2.302    0.01503    0.000
+   0.117    0.035    0.017   11.593    0.00020    0.00009    2.320    0.01237    0.000
+   0.137    0.041    0.023   12.326    0.00022    0.00010    2.340    0.01041    0.000
+   0.157    0.047    0.029   12.922    0.00025    0.00010    2.357    0.00895    0.000
+   0.179    0.053    0.035   13.400    0.00027    0.00011    2.375    0.00779    0.000
+   0.201    0.060    0.042   13.777    0.00029    0.00012    2.395    0.00683    0.000
+   0.223    0.067    0.049   14.074    0.00032    0.00013    2.414    0.00606    0.000
+   0.246    0.073    0.055   14.303    0.00034    0.00014    2.435    0.00540    0.000
+   0.270    0.080    0.062   14.478    0.00037    0.00015    2.454    0.00485    0.000
+   0.294    0.088    0.070   14.600    0.00040    0.00016    2.479    0.00434    0.000
+   0.318    0.095    0.077   14.682    0.00043    0.00017    2.503    0.00391    0.000
+   0.343    0.102    0.084   14.733    0.00047    0.00018    2.527    0.00354    0.000
+   0.368    0.110    0.092   14.752    0.00050    0.00020    2.556    0.00318    0.000
+   0.394    0.118    0.099   14.748    0.00054    0.00021    2.587    0.00286    0.000
+   0.420    0.125    0.107   14.724    0.00058    0.00022    2.621    0.00257    0.000
+   0.447    0.133    0.115   14.679    0.00063    0.00024    2.666    0.00228    0.030
+   0.474    0.141    0.123   14.620    0.00068    0.00025    2.714    0.00202    0.140
+   0.501    0.149    0.131   14.545    0.00074    0.00027    2.770    0.00177    0.269
+   0.528    0.158    0.139   14.459    0.00080    0.00028    2.838    0.00152    0.421
+   0.556    0.166    0.147   14.359    0.00088    0.00030    2.932    0.00125    0.608
+   0.584    0.174    0.155   14.249    0.00098    0.00032    3.060    0.00097    0.843
+   0.612    0.183    0.163   14.120    0.00113    0.00034    3.317    0.00058    1.168
+   0.641    0.191    0.171   13.992    0.00060    0.00036    1.639    0.00616    0.000
+   0.669    0.200    0.180   13.843    0.00067    0.00041    1.642    0.00576    0.000
+   0.698    0.208    0.188   13.674    0.00075    0.00046    1.646    0.00541    0.000
+   0.726    0.217    0.196   13.497    0.00083    0.00051    1.650    0.00511    0.000
+   0.755    0.225    0.204   13.292    0.00093    0.00056    1.661    0.00479    0.000
+   0.784    0.234    0.213   13.060    0.00105    0.00063    1.677    0.00445    0.000
+   0.813    0.242    0.221   12.792    0.00120    0.00070    1.704    0.00407    0.000
+   0.841    0.251    0.229   12.477    0.00139    0.00080    1.748    0.00362    0.000
+   0.870    0.260    0.237   12.095    0.00168    0.00092    1.828    0.00304    0.000
+   0.899    0.268    0.245   11.620    0.00219    0.00110    1.987    0.00224    0.000
+   0.927    0.277    0.253   10.994    0.00345    0.00141    2.441    0.00097    0.000
+   0.955    0.285    0.261   10.120    0.00558    0.00199    2.808    0.00000    0.000
+   0.980    0.292    0.268    8.831    0.00949    0.00338    2.807    0.00000    0.000
+   1.000    0.298    0.274    6.130    0.03937    0.01404    2.805    0.00000    0.000
+
+ ** B.L. Analysis on element   2 side   2
+  Mach  =     0.00000
+  Uren  =   0.515E+05   Ampmax =   9.00000
+  Strn  =     0.19374   Ssep   =     0.34667
+  CXvis =     0.02001
+
+   S/Smax    S        X        Ue       Dstar      Theta      H12        Cf       Amp
+   0.000    0.000   -0.015    0.000    0.00010    0.00005    2.236    0.00000    0.000
+   0.004    0.002   -0.016    1.147    0.00010    0.00005    2.236    0.26082    0.000
+   0.015    0.005   -0.019    4.873    0.00009    0.00004    2.242    0.06986    0.000
+   0.025    0.009   -0.022    9.354    0.00008    0.00004    2.248    0.04116    0.000
+   0.035    0.012   -0.024   14.646    0.00007    0.00003    2.252    0.02953    0.000
+   0.043    0.015   -0.026   20.854    0.00007    0.00003    2.263    0.02311    0.000
+   0.052    0.018   -0.028   27.754    0.00006    0.00003    2.283    0.01879    0.000
+   0.060    0.021   -0.029   35.015    0.00006    0.00003    2.309    0.01571    0.000
+   0.068    0.023   -0.029   42.305    0.00006    0.00003    2.346    0.01328    0.000
+   0.076    0.026   -0.030   49.311    0.00006    0.00003    2.383    0.01149    0.000
+   0.083    0.029   -0.029   55.625    0.00007    0.00003    2.431    0.00988    0.000
+   0.091    0.032   -0.029   60.829    0.00007    0.00003    2.492    0.00835    0.000
+   0.100    0.035   -0.028   64.828    0.00008    0.00003    2.554    0.00700    0.000
+   0.108    0.038   -0.026   67.568    0.00009    0.00004    2.625    0.00575    0.000
+   0.117    0.041   -0.024   69.382    0.00011    0.00004    2.689    0.00475    0.000
+   0.127    0.044   -0.022   70.613    0.00012    0.00005    2.739    0.00401    0.000
+   0.138    0.048   -0.019   71.372    0.00014    0.00005    2.790    0.00339    0.000
+   0.149    0.052   -0.016   71.972    0.00016    0.00006    2.812    0.00300    0.000
+   0.162    0.056   -0.012   72.395    0.00017    0.00006    2.836    0.00266    0.000
+   0.175    0.061   -0.008   72.783    0.00019    0.00007    2.843    0.00244    0.000
+   0.189    0.066   -0.004   73.116    0.00020    0.00007    2.851    0.00224    0.000
+   0.204    0.071    0.001   73.450    0.00022    0.00008    2.852    0.00210    0.000
+   0.219    0.076    0.006   73.768    0.00023    0.00008    2.851    0.00198    0.000
+   0.236    0.082    0.011   74.083    0.00024    0.00009    2.849    0.00188    0.000
+   0.253    0.088    0.017   74.382    0.00026    0.00009    2.850    0.00178    0.000
+   0.270    0.094    0.023   74.655    0.00027    0.00009    2.853    0.00169    0.000
+   0.288    0.100    0.029   74.906    0.00028    0.00010    2.857    0.00161    0.000
+   0.307    0.106    0.036   75.114    0.00030    0.00010    2.867    0.00152    0.000
+   0.326    0.113    0.042   75.263    0.00031    0.00011    2.882    0.00143    0.000
+   0.345    0.120    0.049   75.361    0.00033    0.00011    2.899    0.00134    0.000
+   0.365    0.127    0.056   75.403    0.00034    0.00012    2.919    0.00126    0.000
+   0.386    0.134    0.063   75.359    0.00036    0.00012    2.950    0.00116    0.088
+   0.407    0.141    0.070   75.247    0.00038    0.00013    2.987    0.00106    0.221
+   0.428    0.148    0.077   75.060    0.00040    0.00013    3.034    0.00096    0.380
+   0.447    0.155    0.084   74.901    0.00042    0.00014    3.059    0.00089    0.540
+   0.464    0.161    0.090   74.603    0.00045    0.00014    3.137    0.00078    0.709
+   0.481    0.167    0.096   74.306    0.00047    0.00015    3.202    0.00069    0.920
+   0.499    0.173    0.102   73.953    0.00050    0.00015    3.291    0.00058    1.182
+   0.516    0.179    0.108   73.558    0.00054    0.00016    3.409    0.00047    1.514
+   0.534    0.185    0.114   73.103    0.00059    0.00016    3.603    0.00033    1.959
+   0.552    0.191    0.120   72.622    0.00067    0.00017    3.954    0.00016    2.591
+   0.570    0.197    0.126   72.103    0.00032    0.00018    1.757    0.00459    0.000
+   0.588    0.204    0.133   71.535    0.00035    0.00020    1.752    0.00441    0.000
+   0.606    0.210    0.139   70.938    0.00039    0.00022    1.746    0.00427    0.000
+   0.625    0.217    0.145   70.309    0.00042    0.00024    1.741    0.00414    0.000
+   0.643    0.223    0.152   69.646    0.00045    0.00026    1.735    0.00402    0.000
+   0.662    0.229    0.158   68.952    0.00049    0.00028    1.731    0.00391    0.000
+   0.680    0.236    0.165   68.242    0.00052    0.00030    1.726    0.00380    0.000
+   0.699    0.242    0.171   67.512    0.00056    0.00033    1.723    0.00371    0.000
+   0.718    0.249    0.178   66.758    0.00060    0.00035    1.720    0.00361    0.000
+   0.737    0.255    0.184   65.993    0.00064    0.00037    1.718    0.00352    0.000
+   0.755    0.262    0.190   65.233    0.00068    0.00040    1.716    0.00343    0.000
+   0.773    0.268    0.197   64.456    0.00072    0.00042    1.715    0.00334    0.000
+   0.792    0.275    0.203   63.670    0.00077    0.00045    1.715    0.00326    0.000
+   0.810    0.281    0.210   62.848    0.00082    0.00048    1.717    0.00317    0.000
+   0.829    0.287    0.216   62.020    0.00087    0.00051    1.719    0.00308    0.000
+   0.847    0.294    0.222   61.167    0.00092    0.00054    1.723    0.00298    0.000
+   0.866    0.300    0.229   60.283    0.00099    0.00057    1.729    0.00288    0.000
+   0.884    0.306    0.235   59.361    0.00105    0.00061    1.737    0.00277    0.000
+   0.902    0.313    0.241   58.398    0.00113    0.00065    1.749    0.00266    0.000
+   0.921    0.319    0.247   57.362    0.00122    0.00069    1.766    0.00252    0.000
+   0.939    0.325    0.254   56.242    0.00133    0.00075    1.791    0.00235    0.000
+   0.956    0.332    0.260   54.980    0.00148    0.00081    1.831    0.00214    0.000
+   0.973    0.337    0.265   53.546    0.00169    0.00089    1.896    0.00187    0.000
+   0.988    0.343    0.270   51.785    0.00205    0.00101    2.032    0.00145    0.000
+   1.000    0.347    0.275   49.178    0.00307    0.00123    2.486    0.00062    0.000
+
+.BL     c>  
+.OPERi(1)   c>   
+ ---------------------------------------------------------------
+ My fan                                            
+ 
+ Qinf   =   15.000        Rho  =  0.86323    
+ Qref   =   15.000        Mach =   0.0000    
+ unitRN =   51461.       q_ref =   97.113    
+ -----------------------------------------------------
+ Total Forces
+ Fx    =  -100.64         Cx    =  -1.0364    
+ Fxinv =  -103.06         Cxinv =  -1.0612    
+ Fxvis =   2.4132         Cxvis =  0.24849E-01
+ -----------------------------------------------------
+ Element  1
+ Fx    =  -3.9134         Cx    = -0.40297E-01
+ Fxinv =  -4.3833         Cxinv = -0.45136E-01
+ Fxvis =  0.46988         Cxvis =  0.48385E-02
+ QnDOF=  0.35651E-02
+ -----------------------------------------------------
+ Element  2
+ Fx    =  -96.731         Cx    = -0.99606    
+ Fxinv =  -98.674         Cxinv =  -1.0161    
+ Fxvis =   1.9433         Cxvis =  0.20011E-01
+ QnDOF=  0.91035E-03
+ -----------------------------------------------------
+ Element  3
+ Fx    =   0.0000         Cx    =   0.0000    
+ Fxinv =   0.0000         Cxinv =   0.0000    
+ Fxvis =   0.0000         Cxvis =   0.0000    
+ QnDOF=   0.0000    
+ -----------------------------------------------------
+ Element  4
+ Fx    =   0.0000         Cx    =   0.0000    
+ Fxinv =   0.0000         Cxinv =   0.0000    
+ Fxvis =   0.0000         Cxvis =   0.0000    
+ QnDOF=   0.0000    
+
+.OPERi(1)   c>  
+.OPERi(1)   c>  
+ DFDC   c>  
+ DFDC   c>  

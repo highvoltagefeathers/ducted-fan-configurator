@@ -109,6 +109,26 @@ filled root and tip caps.  The sections are the same NACA-style sketch the
 viewer draws: DFDC knows the polar, not the shape, so substitute your real
 section coordinates if the family sketch is not what you intend to build.
 
+## Saving and reloading designs
+
+Every solve leaves a reloadable bundle in `runs/<timestamp>/` (`run.json`:
+sliders, mode, input blades and the full result, next to DFDC's own files).
+`runs/` keeps only the last 12, so a design worth keeping gets a name:
+
+* **Save design** (top bar) copies the current state into
+  `designs/<name>/` - `design.json` plus DFDC's case file, result file and
+  log. Nothing prunes that folder; delete entries from the Designs panel.
+  Saving is refused while the display is out of date with the solver, so what
+  you save is what you saw.
+* **Designs** (top bar) lists saved designs and the recent runs. *Load* puts
+  the UI back exactly as it was - sliders, blades, every result tab - without
+  re-running DFDC. Change a slider afterwards and live solve makes a new run;
+  the saved copy is untouched. *Save as design* on a recent run keeps it
+  before it is pruned.
+
+`designs/` is a normal folder: back it up, commit it, or copy a design folder
+to someone else's install.
+
 ## Blade sections
 
 DFDC does not take airfoil coordinates.  Each section is a parametric polar

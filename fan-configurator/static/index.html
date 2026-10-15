@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ducted Fan Configurator</title>
-<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
 <header class="topbar">
@@ -23,6 +23,8 @@
     <input id="case-name" class="name-input" value="My fan" aria-label="Case name" spellcheck="false">
     <label class="switch live" title="Re-run DFDC automatically whenever a setting changes"><input type="checkbox" id="live-chk" checked><span>Live solve</span></label>
     <span id="solve-status" class="muted status"></span>
+    <button id="save-btn" class="small-btn tb-btn" title="Keep this design: settings, blades and results, by name">Save design</button>
+    <button id="designs-btn" class="small-btn tb-btn" title="Saved designs and recent runs">Designs</button>
     <button id="theme-btn" class="icon-btn" title="Toggle light/dark">&#9680;</button>
     <button id="run-btn" class="run-btn">Run DFDC</button>
   </div>
@@ -89,11 +91,30 @@
   </section>
 </main>
 
+<div id="save-pop" class="popover" hidden>
+  <div class="pop-title">Save this design</div>
+  <label>Name <input id="save-name" type="text" spellcheck="false" maxlength="60"></label>
+  <label>Note <input id="save-note" type="text" placeholder="optional - what's good about it" maxlength="200"></label>
+  <div class="pop-actions"><button class="small-btn" id="save-cancel" type="button">Cancel</button><button class="small-btn primary" id="save-ok" type="button">Save</button></div>
+  <div class="note" id="save-hint"></div>
+</div>
+
+<div id="designs-panel" class="overlay" hidden>
+  <div class="drawer" role="dialog" aria-label="Designs">
+    <div class="drawer-head"><span class="card-title">Designs</span><button class="icon-btn" id="designs-close" title="Close">&#10005;</button></div>
+    <div class="drawer-body">
+      <div class="subhead" style="margin-top:0">Saved designs <span class="muted" id="designs-count"></span></div>
+      <div id="designs-list" class="design-list"></div>
+      <div class="subhead">Recent runs <span class="muted">&middot; automatic, only the last 12 are kept</span></div>
+      <div id="runs-list" class="design-list"></div>
+    </div>
+  </div>
+</div>
 <div id="toast" class="toast" hidden></div>
 <div id="tooltip" class="tooltip" hidden></div>
 <script src="vendor/three.min.js"></script>
 <script src="vendor/OrbitControls.js"></script>
-<script src="viewer3d.js?v=3"></script>
-<script src="app.js?v=3"></script>
+<script src="viewer3d.js?v=4"></script>
+<script src="app.js?v=4"></script>
 </body>
 </html>

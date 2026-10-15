@@ -19,6 +19,7 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 import airfoils  # noqa: E402
+import designs  # noqa: E402
 import dfdc_driver
 import geometry
 
@@ -82,9 +83,27 @@ class Handler(SimpleHTTPRequestHandler):
             rid, _, name = self.path[len("/api/file/"):].partition("/")
             rid, name = os.path.basename(rid), os.path.basename(name)
             return self._send_file(os.path.join(dfdc_driver.RUN_ROOT, rid, name), name, "application/octet-stream")
+        if self.path == "/api/designs":
+            return self._json({"designs": designs.list_designs(), "runs": designs.list_runs(dfdc_driver.RUN_ROOT)})
+        if self.path.startswith("/api/designs/") or self.path.startswith("/api/runs/"):
+            kind = "design" if self.path.startswith("/api/designs/") else "run"
+            ident = os.path.basename(self.path.rstrip("/").rsplit("/", 1)[1])
+            try:
+                return self._json(designs.load(kind, ident, dfdc_driver.RUN_ROOT))
+            except FileNotFoundError as e:
+                return self._json({"error": str(e)}, HTTPStatus.NOT_FOUND)
         if self.path == "/":
             self.path = "/index.html"
         return super().do_GET()
+
+    def do_DELETE(self):
+        if self.path.startswith("/api/designs/"):
+            try:
+                designs.delete_design(os.path.basename(self.path.rstrip("/").rsplit("/", 1)[1]))
+                return self._json({"ok": True})
+            except FileNotFoundError as e:
+                return self._json({"error": str(e)}, HTTPStatus.NOT_FOUND)
+        return self._json({"error": "unknown endpoint"}, HTTPStatus.NOT_FOUND)
 
     def do_POST(self):
         try:
@@ -112,8 +131,18 @@ class Handler(SimpleHTTPRequestHandler):
                         res = dfdc_driver.analyze(req["config"], req.get("rotors") or [])
                     else:
                         res = dfdc_driver.design(req["config"])
-                res["run_id"] = os.path.basename(res.pop("run_dir"))
+                run_dir = res.pop("run_dir")
+                res["run_id"] = os.path.basename(run_dir)
+                designs.write_run_bundle(run_dir, req.get("mode", "design"), req["config"], req.get("rotors"), res)
                 return self._json(res)
+            if self.path == "/api/designs":
+                try:
+                    entry = designs.save_design(req.get("name", ""), req.get("note", ""), req.get("mode", "design"),
+                                                req["config"], req.get("rotors"), req.get("result"),
+                                                dfdc_driver.RUN_ROOT, overwrite=bool(req.get("overwrite")))
+                except FileExistsError as e:
+                    return self._json({"error": "exists", "id": str(e)}, HTTPStatus.CONFLICT)
+                return self._json(entry)
             return self._json({"error": "unknown endpoint"}, HTTPStatus.NOT_FOUND)
         except dfdc_driver.DFDCError as e:
             return self._json({"error": str(e)}, HTTPStatus.UNPROCESSABLE_ENTITY)
